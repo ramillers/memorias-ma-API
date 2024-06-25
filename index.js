@@ -3,6 +3,7 @@ const dotenv = require('dotenv'); // Importa o dotenv para carregar as variávei
 const connectDB = require('./config/db'); // Importa a função de conexão com o banco de dados
 const authRoutes = require('./src/routes/authRoutes'); // Importa as rotas de autenticação
 const scoreRoutes = require('./src/routes/scoreRoutes'); // Importa as rotas de pontuação
+const cors = require('cors'); // Importa o pacote cors
 
 dotenv.config(); // Carrega as variáveis de ambiente do arquivo .env
 
@@ -10,8 +11,8 @@ connectDB(); // Conecta ao banco de dados
 
 const app = express(); // Cria uma nova aplicação express
 
+app.use(cors()); // Middleware para permitir todas as origens
 app.use(express.json()); // Middleware para parsear o corpo das requisições como JSON
-
 
 // Define as rotas da aplicação
 app.use('/api/auth', authRoutes);
